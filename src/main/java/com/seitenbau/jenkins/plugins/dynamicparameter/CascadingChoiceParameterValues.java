@@ -16,14 +16,15 @@
 package com.seitenbau.jenkins.plugins.dynamicparameter;
 
 import hudson.Plugin;
-import hudson.model.Hudson;
 import hudson.model.AbstractProject;
 import hudson.model.ParameterDefinition;
+import jenkins.model.Jenkins;
 
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 
@@ -78,7 +79,7 @@ public class CascadingChoiceParameterValues extends Plugin
   @SuppressWarnings("rawtypes")
   private AbstractProject getProject()
   {
-    Hudson instance = Hudson.getInstance();
+    Jenkins instance = Jenkins.getInstanceOrNull();
     if (instance != null)
     {
       return (AbstractProject) instance.getItem(this.getProjectName());

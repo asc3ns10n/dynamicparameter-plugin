@@ -17,7 +17,6 @@ package com.seitenbau.jenkins.plugins.dynamicparameter;
 
 import hudson.Extension;
 import hudson.model.AbstractProject;
-import hudson.model.StringParameterValue;
 
 import java.util.Collections;
 import java.util.HashMap;

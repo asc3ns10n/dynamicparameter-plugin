@@ -19,8 +19,6 @@ import hudson.Extension;
 import hudson.model.ParameterValue;
 import hudson.model.StringParameterValue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

@@ -22,7 +22,6 @@ import jenkins.model.Jenkins;
 
 import hudson.BulkChange;
 import hudson.XmlFile;
-import hudson.model.Hudson;
 import hudson.model.Saveable;
 
 /**
@@ -131,14 +130,14 @@ public enum DynamicParameterConfiguration
 
     private static File getHomeDirectory()
     {
-      Hudson hudson = Hudson.getInstance();
-      if (hudson == null)
+      Jenkins jenkins = Jenkins.getInstanceOrNull();
+      if (jenkins == null)
       {
         return new File(HOME_DIR);
       }
       else
       {
-        return new File(hudson.getRootDir(), HOME_DIR);
+        return new File(jenkins.getRootDir(), HOME_DIR);
       }
     }
 

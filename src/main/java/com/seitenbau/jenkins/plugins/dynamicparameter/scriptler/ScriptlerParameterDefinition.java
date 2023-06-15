@@ -24,6 +24,8 @@ import java.util.Map;
 import org.jenkinsci.plugins.scriptler.config.Parameter;
 import org.jenkinsci.plugins.scriptler.config.Script;
 import org.jenkinsci.plugins.scriptler.util.ScriptHelper;
+import org.jenkinsci.remoting.Role;
+import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import com.seitenbau.jenkins.plugins.dynamicparameter.BaseParameterDefinition;
@@ -182,6 +184,16 @@ public abstract class ScriptlerParameterDefinition extends BaseParameterDefiniti
     public Object call()
     {
       return JenkinsUtils.execute(_remoteScript, _parameters);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.jenkinsci.remoting.RoleSensitive#checkRoles(org.jenkinsci.remoting.RoleChecker)
+     */
+    @Override
+    public void checkRoles(RoleChecker roleChecker) throws SecurityException 
+    {
+      roleChecker.check(this, Role.UNKNOWN);
     }
 
   }

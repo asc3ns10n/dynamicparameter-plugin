@@ -22,11 +22,12 @@ import hudson.remoting.VirtualChannel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jenkinsci.remoting.Role;
+import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.QueryParameter;
 
 import com.seitenbau.jenkins.plugins.dynamicparameter.config.DynamicParameterConfiguration;
@@ -276,6 +277,16 @@ public abstract class ScriptParameterDefinition extends BaseParameterDefinition
     public Object call()
     {
       return JenkinsUtils.execute(_remoteScript, _parameters, _classPaths);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.jenkinsci.remoting.RoleSensitive#checkRoles(org.jenkinsci.remoting.RoleChecker)
+     */
+    @Override
+    public void checkRoles(RoleChecker roleChecker) throws SecurityException 
+    {
+      roleChecker.check(this, Role.UNKNOWN);
     }
 
   }

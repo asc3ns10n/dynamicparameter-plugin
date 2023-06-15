@@ -19,12 +19,12 @@ import groovy.lang.GroovyShell;
 import hudson.FilePath;
 import hudson.Plugin;
 import hudson.model.AbstractProject;
-import hudson.model.Hudson;
 import hudson.model.Label;
 import hudson.model.Node;
 import hudson.model.ParameterDefinition;
 import hudson.model.ParametersDefinitionProperty;
 import hudson.remoting.VirtualChannel;
+import jenkins.model.Jenkins;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -139,7 +139,7 @@ public final class JenkinsUtils
    */
   public static boolean isPluginAvailable(String shortName)
   {
-    Plugin plugin = Hudson.getInstance().getPlugin(shortName);
+    Plugin plugin = Jenkins.get().getPlugin(shortName);
     if(plugin == null)
     {
       return false;
@@ -207,7 +207,7 @@ public final class JenkinsUtils
   @SuppressWarnings("rawtypes")
   public static AbstractProject findCurrentProject(UUID parameterUUID)
   {
-    Hudson instance = Hudson.getInstance();
+    Jenkins instance = Jenkins.getInstanceOrNull();
     if (instance != null)
     {
       List<AbstractProject> projects = instance.getAllItems(AbstractProject.class);

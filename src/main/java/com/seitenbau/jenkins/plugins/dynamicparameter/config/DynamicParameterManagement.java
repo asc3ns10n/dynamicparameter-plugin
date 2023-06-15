@@ -18,8 +18,8 @@ package com.seitenbau.jenkins.plugins.dynamicparameter.config;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.ManagementLink;
-import hudson.model.Hudson;
 import hudson.security.Permission;
+import jenkins.model.Jenkins;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -239,12 +239,14 @@ public class DynamicParameterManagement extends ManagementLink
 
   private static void checkReadPermission()
   {
-    Hudson.getInstance().checkPermission(Permission.READ);
+    Jenkins jenkins = Jenkins.getInstanceOrNull();
+    jenkins.checkPermission(Permission.READ);
   }
 
   private static void checkWritePermission()
   {
-    Hudson.getInstance().checkPermission(Permission.CONFIGURE);
+    Jenkins jenkins = Jenkins.getInstanceOrNull();
+    jenkins.checkPermission(Permission.CONFIGURE);
   }
 
   private static HttpResponse redirectToIndex()

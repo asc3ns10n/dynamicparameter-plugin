@@ -18,16 +18,12 @@ package com.seitenbau.jenkins.plugins.dynamicparameter.scriptler;
 import hudson.Extension;
 import hudson.model.ParameterValue;
 import hudson.model.StringParameterValue;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.plugins.scriptler.config.Script;
 import org.jvnet.localizer.ResourceBundleHolder;
 import org.kohsuke.stapler.DataBoundConstructor;
